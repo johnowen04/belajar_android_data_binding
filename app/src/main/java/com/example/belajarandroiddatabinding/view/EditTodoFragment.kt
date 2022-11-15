@@ -7,21 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.belajarandroiddatabinding.R
+import com.example.belajarandroiddatabinding.databinding.FragmentEditTodoBinding
 import com.example.belajarandroiddatabinding.viewmodel.DetailTodoViewModel
 import kotlinx.android.synthetic.main.fragment_create_todo.*
 
 class EditTodoFragment : Fragment() {
     private lateinit var viewModel: DetailTodoViewModel
+    private lateinit var dataBinding: FragmentEditTodoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_todo, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_todo, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
