@@ -11,6 +11,10 @@
         <variable
             name="listener"
             type="com.example.belajarandroiddatabinding.view.TodoCheckedChangeListener" />
+
+        <variable
+            name="editListener"
+            type="com.example.belajarandroiddatabinding.view.TodoEditClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +43,8 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="#FFFFFF"
             android:minHeight="48dp"
+            android:tag="@{todo.uuid}"
+            android:onClick="@{editListener::onClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
