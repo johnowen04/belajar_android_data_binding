@@ -1,42 +1,43 @@
 package com.example.belajarandroiddatabinding.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.belajarandroiddatabinding.R
+import com.example.belajarandroiddatabinding.databinding.TodoItemLayoutBinding
 import com.example.belajarandroiddatabinding.model.Todo
-import kotlinx.android.synthetic.main.todo_item_layout.view.*
 
 class TodoListAdapter(
     val todoList: ArrayList<Todo>,
     val adapterOnClick: (Todo) -> Unit
 ): RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
 
-    class TodoViewHolder(var view: View): RecyclerView.ViewHolder(view)
+    class TodoViewHolder(var view: TodoItemLayoutBinding): RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.todo_item_layout, parent, false)
+        val view = TodoItemLayoutBinding.inflate(inflater, parent, false)
 
         return TodoViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val todo = todoList[position]
+        holder.view.todo = todoList[position]
+        /*
+        val selectedTodo = todoList[position]
 
         with(holder.view) {
-            checkBox.text = todo.title
+            checkBox.text = selectedTodo.title
             checkBox.setOnCheckedChangeListener{ _, b ->
-                if (b) adapterOnClick(todo)
+                if (b) adapterOnClick(selectedTodo)
             }
 
             imgButtonEdit.setOnClickListener {
-                val action = TodoListFragmentDirections.actionEditTodoFragment(todo.uuid)
+                val action = TodoListFragmentDirections.actionEditTodoFragment(selectedTodo.uuid)
                 Navigation.findNavController(it).navigate(action)
             }
         }
+         */
     }
 
     fun updateTodoList(newTodoList: List<Todo>) {
