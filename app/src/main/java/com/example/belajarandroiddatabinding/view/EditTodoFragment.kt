@@ -32,9 +32,6 @@ class EditTodoFragment : Fragment(), RadioButtonListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textTitleTodo.text = "Edit Todo"
-        btnAddNotes.text = "Save Changes"
-
         dataBinding.listener = this
 
         /*
