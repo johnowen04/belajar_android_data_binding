@@ -57,6 +57,8 @@ class EditTodoFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.todoLiveData.observe(viewLifecycleOwner) {
+            dataBinding.todo = it
+            /*
             editTitle.setText(it.title)
             editNotes.setText(it.notes)
 
@@ -65,6 +67,7 @@ class EditTodoFragment : Fragment() {
                 2 -> radioMedium.isChecked = true
                 else -> radioLow.isChecked = true
             }
+             */
         }
     }
 }

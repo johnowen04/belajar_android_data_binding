@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="todo"
+            type="com.example.belajarandroiddatabinding.model.Todo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +22,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/open_sans"
-            android:text="New ToDo"
+            android:text="Edit ToDo"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +45,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@={todo.title}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -72,7 +75,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNotes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@={todo.notes}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -99,23 +103,25 @@
                 android:id="@+id/radioHigh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:tag="3"
-                android:text="High" />
+                android:text="High"
+                android:checked="@{todo.priority == 3 ? true : false}"/>
 
             <RadioButton
                 android:id="@+id/radioMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="2"
-                android:text="Medium" />
+                android:text="Medium"
+                android:checked="@{todo.priority == 2 ? true : false}" />
 
             <RadioButton
                 android:id="@+id/radioLow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:tag="1"
-                android:text="Low" />
+                android:text="Low"
+                android:checked="@{todo.priority == 1 ? true : false}" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
