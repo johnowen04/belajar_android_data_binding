@@ -11,3 +11,7 @@ interface TodoCheckedChangeListener {
 interface TodoEditClickListener {
     fun onClick(view: View)
 }
+
+interface RadioButtonListener {
+    fun onRadioClick(view: View, priority: Int, todo: Todo)
+}

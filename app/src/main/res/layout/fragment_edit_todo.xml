@@ -7,6 +7,10 @@
         <variable
             name="todo"
             type="com.example.belajarandroiddatabinding.model.Todo" />
+
+        <variable
+            name="listener"
+            type="com.example.belajarandroiddatabinding.view.RadioButtonListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:tag="3"
                 android:text="High"
+                android:onClick="@{ (view) -> listener.onRadioClick(view, 3, todo) }"
                 android:checked="@{todo.priority == 3 ? true : false}"/>
 
             <RadioButton
@@ -113,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:tag="2"
                 android:text="Medium"
+                android:onClick="@{ (view) -> listener.onRadioClick(view, 2, todo) }"
                 android:checked="@{todo.priority == 2 ? true : false}" />
 
             <RadioButton
@@ -121,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:tag="1"
                 android:text="Low"
+                android:onClick="@{ (view) -> listener.onRadioClick(view, 1, todo) }"
                 android:checked="@{todo.priority == 1 ? true : false}" />
         </RadioGroup>
 
