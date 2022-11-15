@@ -45,11 +45,18 @@ class EditTodoFragment : Fragment(), RadioButtonListener {
         }
          */
 
+        dataBinding.saveListener = object: TodoSaveChangesListener {
+            override fun onSaveChangeClick(view: View, todo: Todo) {
+
+            }
+        }
+
         val uuid: Int = EditTodoFragmentArgs.fromBundle(requireArguments()).uuid
 
         viewModel = ViewModelProvider(this).get(DetailTodoViewModel::class.java)
         viewModel.fetch(uuid)
 
+        /*
         btnAddNotes.setOnClickListener {
             val radio = view.findViewById<RadioButton>(radioGroupPriority.checkedRadioButtonId)
             viewModel.updateTodo(
@@ -62,6 +69,7 @@ class EditTodoFragment : Fragment(), RadioButtonListener {
             Toast.makeText(view.context, "Data updated", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(it).popBackStack()
         }
+         */
 
         observeViewModel()
     }
