@@ -12,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.belajarandroiddatabinding.R
 import com.example.belajarandroiddatabinding.databinding.FragmentEditTodoBinding
+import com.example.belajarandroiddatabinding.model.Todo
 import com.example.belajarandroiddatabinding.viewmodel.DetailTodoViewModel
 import kotlinx.android.synthetic.main.fragment_create_todo.*
 
-class EditTodoFragment : Fragment() {
+class EditTodoFragment : Fragment(), RadioButtonListener {
     private lateinit var viewModel: DetailTodoViewModel
     private lateinit var dataBinding: FragmentEditTodoBinding
 
@@ -33,6 +34,16 @@ class EditTodoFragment : Fragment() {
 
         textTitleTodo.text = "Edit Todo"
         btnAddNotes.text = "Save Changes"
+
+        dataBinding.listener = this
+
+        /*
+        dataBinding.listener = object: RadioButtonListener {
+            override fun onRadioClick(view: View, priority: Int, todo: Todo) {
+                TODO("Not yet implemented")
+            }
+        }
+         */
 
         val uuid: Int = EditTodoFragmentArgs.fromBundle(requireArguments()).uuid
 
@@ -69,5 +80,9 @@ class EditTodoFragment : Fragment() {
             }
              */
         }
+    }
+
+    override fun onRadioClick(view: View, priority: Int, todo: Todo) {
+        todo.priority = priority
     }
 }
