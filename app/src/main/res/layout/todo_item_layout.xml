@@ -7,6 +7,10 @@
         <variable
             name="todo"
             type="com.example.belajarandroiddatabinding.model.Todo" />
+
+        <variable
+            name="listener"
+            type="com.example.belajarandroiddatabinding.view.TodoCheckedChangeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +26,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@{todo.title}"
+            android:onCheckedChanged="@{(cb, isChecked) -> listener.onCheckedChange(cb, isChecked, todo)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

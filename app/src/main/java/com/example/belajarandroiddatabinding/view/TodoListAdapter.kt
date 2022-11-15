@@ -2,6 +2,7 @@ package com.example.belajarandroiddatabinding.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.belajarandroiddatabinding.databinding.TodoItemLayoutBinding
@@ -10,7 +11,8 @@ import com.example.belajarandroiddatabinding.model.Todo
 class TodoListAdapter(
     val todoList: ArrayList<Todo>,
     val adapterOnClick: (Todo) -> Unit
-): RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
+): RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>(),
+TodoCheckedChangeListener {
 
     class TodoViewHolder(var view: TodoItemLayoutBinding): RecyclerView.ViewHolder(view.root)
 
@@ -23,6 +25,16 @@ class TodoListAdapter(
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.view.todo = todoList[position]
+        holder.view.listener = this
+
+        /*
+        holder.view.listener = object: TodoCheckedChangeListener {
+            override fun onCheckedChange(cb: CompoundButton, isChecked: Boolean, todo: Todo) {
+                TODO("Not yet implemented")
+            }
+        }
+         */
+
         /*
         val selectedTodo = todoList[position]
 
@@ -47,4 +59,8 @@ class TodoListAdapter(
     }
 
     override fun getItemCount(): Int = todoList.size
+
+    override fun onCheckedChange(cb: CompoundButton, isChecked: Boolean, todo: Todo) {
+        if (isChecked) adapterOnClick(todo)
+    }
 }
